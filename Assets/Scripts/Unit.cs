@@ -22,8 +22,6 @@ public class Unit : MonoBehaviour
             Move(new Vector3(4, 0, 4));
         }
     }
-
-
     private void Move(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
