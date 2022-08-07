@@ -554,6 +554,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 170879061315799199, guid: b0650fe405420e04e81115d2f43063c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6119275182271503315, guid: b0650fe405420e04e81115d2f43063c4, type: 3}
       propertyPath: m_Name
       value: unit (1)
@@ -732,6 +736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedUnit: {fileID: 13042580}
+  selectedUnitLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!4 &1811118224
 Transform:
   m_ObjectHideFlags: 0
