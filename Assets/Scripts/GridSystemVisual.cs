@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridSystemVisual : MonoBehaviour
 {
-    public static GridSystemVisual Instance { get; private set; }
+    public static GridSystemVisual Instance { get; private set; } 
 
     [SerializeField] private Transform gridSystemVisualsinglePrefab;
 
