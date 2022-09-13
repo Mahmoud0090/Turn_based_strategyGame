@@ -16,5 +16,4 @@ public class ActionButtonUI : MonoBehaviour
             UnitActionSystem.Instance.SetSelectedAction(baseAction);
         });
     }
-
 }

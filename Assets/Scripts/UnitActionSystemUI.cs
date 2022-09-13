@@ -15,7 +15,6 @@ public class UnitActionSystemUI : MonoBehaviour
         CreateUnitActionButtons();
     }
 
-
     private void CreateUnitActionButtons()
     {
         foreach(Transform transform in actionButtonContainerTransform)
@@ -37,5 +36,4 @@ public class UnitActionSystemUI : MonoBehaviour
     {
         CreateUnitActionButtons();
     }
-
 }

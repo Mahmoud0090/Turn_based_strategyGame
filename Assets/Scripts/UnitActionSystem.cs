@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitActionSystem : MonoBehaviour
 {
@@ -34,10 +35,13 @@ public class UnitActionSystem : MonoBehaviour
     {
         if (isBusy) { return; }
 
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
 
         if (TryHandleUnitSelection()) return;
         
-
         HandleSelectedAction();
     }
 
@@ -46,23 +50,14 @@ public class UnitActionSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
-            switch (selectedAction)
+
+            if(selectedAction.IsvalidActionGridPosition(mouseGridPosition))
             {
-                case MoveAction moveAction:
-                    if (moveAction.IsvalidActionGridPosition(mouseGridPosition))
-                    {
-                        SetBusy();
-                        moveAction.Move(mouseGridPosition, ClearBusy);
-                    }
-                    break;
-                case SpinAction spinAction:
-                    SetBusy();
-                    spinAction.Spin(ClearBusy);
-                    break;
+                SetBusy();
+                selectedAction.TakeAction(mouseGridPosition, ClearBusy);
             }
         }
     }
-
     private void SetBusy()
     {
         isBusy = true;
@@ -83,6 +78,11 @@ public class UnitActionSystem : MonoBehaviour
                 Unit unit = raycastHit.transform.GetComponent<Unit>();
                 if(unit != null)
                 {
+                    if (unit == selectedUnit)
+                    {
+                        //the unit already selected
+                        return false;
+                    }
                     SetSelectedUnit(unit);
                     return true;
                 }
@@ -110,5 +110,10 @@ public class UnitActionSystem : MonoBehaviour
     public Unit GetSelectedUnit()
     {
         return selectedUnit;
+    }
+
+    public BaseAction GetSelectedAction()
+    {
+        return selectedAction;
     }
 }
